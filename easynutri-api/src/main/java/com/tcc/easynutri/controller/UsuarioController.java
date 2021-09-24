@@ -1,9 +1,9 @@
 package com.tcc.easynutri.controller;
 
+import java.util.Date;
 import java.util.List;
 
-import javax.xml.bind.ValidationException;
-
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tcc.easynutri.model.entity.Usuario;
 import com.tcc.easynutri.model.repository.UsuarioRepository;
+import com.tcc.easynutri.util.validacao.ValidacaoRecursoUtil;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -33,38 +34,40 @@ public class UsuarioController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void adicionar(@RequestBody Usuario usuario) {
-		usuarioRepository.save(usuario);
+	public Usuario adicionar(@RequestBody Usuario usuario) throws ConstraintViolationException {
+		try  {
+			return usuarioRepository.save(usuario);
+		} catch(ConstraintViolationException e) {
+			throw new ConstraintViolationException(String.format("O email informado %s já existe", usuario.getEmail()),e.getSQLException(), e.getConstraintName());
+		}
+		
 	}
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void alterar(@PathVariable("id") Long id, @RequestBody Usuario usuario) throws Exception {
+		
+		ValidacaoRecursoUtil.verificaSeRecursoExiste(id, usuarioRepository);
 		var usuarioRetornado = usuarioRepository.findById(id);
-		if (usuarioRetornado.isPresent()) {
-			usuarioRetornado.get().setNome(usuario.getNome());
-			usuarioRepository.save(usuario);
-		} else {
-			throw new Exception("O usuário informado não existe");
-		}
+		usuarioRetornado.get().setEmail(usuario.getEmail());
+		usuarioRetornado.get().setDataAlteracao(new Date());
+		usuarioRepository.save(usuarioRetornado.get());
+		 
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void deletar(@RequestBody Usuario usuario) {
-		usuarioRepository.delete(usuario);
+	public void deletar(@PathVariable("id") Long id) {
+		ValidacaoRecursoUtil.verificaSeRecursoExiste(id, usuarioRepository);
+		var usuarioRetornado = usuarioRepository.findById(id);
+		usuarioRepository.delete(usuarioRetornado.get());
 	}
 	
 	@GetMapping("/{id}")
 	public Usuario buscarPeloId(@PathVariable("id") Long id) throws Exception {
+		ValidacaoRecursoUtil.verificaSeRecursoExiste(id, usuarioRepository);
 		var usuario = usuarioRepository.findById(id);
-		
-		if (usuario.isPresent()) {
-			return usuario.get();
-		} else {
-			throw new Exception("O usuário informado não existe");
-		}
-
+		return usuario.get();
 	}
 	
 }
