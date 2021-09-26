@@ -11,7 +11,7 @@ public class ValidacaoRecursoUtil {
 	 * @param id
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static <T extends JpaRepository> void verificaSeRecursoExiste(Long id, T entidade) {
+	public static <T extends JpaRepository> void verificarSeRecursoExiste(Long id, T entidade) {
 		var usuario = entidade.findById(id);
 		if (!usuario.isPresent()) {
 			throw new RecursoNaoEncontradoException(String.format("O recurso com id %d não existe", id) );

@@ -21,7 +21,7 @@ import com.tcc.easynutri.model.repository.UsuarioRepository;
 import com.tcc.easynutri.util.validacao.ValidacaoRecursoUtil;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
 	@Autowired	
@@ -47,7 +47,7 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	public void alterar(@PathVariable("id") Long id, @RequestBody Usuario usuario) throws Exception {
 		
-		ValidacaoRecursoUtil.verificaSeRecursoExiste(id, usuarioRepository);
+		ValidacaoRecursoUtil.verificarSeRecursoExiste(id, usuarioRepository);
 		var usuarioRetornado = usuarioRepository.findById(id);
 		usuarioRetornado.get().setEmail(usuario.getEmail());
 		usuarioRetornado.get().setDataAlteracao(new Date());
@@ -58,14 +58,14 @@ public class UsuarioController {
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void deletar(@PathVariable("id") Long id) {
-		ValidacaoRecursoUtil.verificaSeRecursoExiste(id, usuarioRepository);
+		ValidacaoRecursoUtil.verificarSeRecursoExiste(id, usuarioRepository);
 		var usuarioRetornado = usuarioRepository.findById(id);
 		usuarioRepository.delete(usuarioRetornado.get());
 	}
 	
 	@GetMapping("/{id}")
 	public Usuario buscarPeloId(@PathVariable("id") Long id) throws Exception {
-		ValidacaoRecursoUtil.verificaSeRecursoExiste(id, usuarioRepository);
+		ValidacaoRecursoUtil.verificarSeRecursoExiste(id, usuarioRepository);
 		var usuario = usuarioRepository.findById(id);
 		return usuario.get();
 	}
