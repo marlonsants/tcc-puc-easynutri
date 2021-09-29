@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.tcc.easynutri.model.dto.UsuarioDTO;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "usuario")
@@ -15,8 +17,9 @@ public class Usuario extends EntityBase {
 		super.setDataCriacao(new Date());
 	}
 		
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String email;
+	@Column(nullable = false)
 	private String senha;
 		
 	public String getEmail() {
@@ -30,5 +33,13 @@ public class Usuario extends EntityBase {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public UsuarioDTO getDto() {
+		var usuarioDto = new UsuarioDTO();
+		usuarioDto.setId(this.getId());
+		usuarioDto.setEmail(this.email);
+		usuarioDto.setSenha(senha);
+		return usuarioDto;
 	}
 }
