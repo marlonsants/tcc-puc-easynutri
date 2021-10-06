@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,7 +59,7 @@ public class PerfilController {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void deletar(@PathVariable("id") Long id) {
+	public void deletar(@PathVariable("id") Long id) throws MissingServletRequestParameterException {
 		ValidacaoRecursoUtil.verificarSeRecursoExiste(id, perfilRepository);
 		var perfilRetornado = perfilRepository.findById(id);
 		perfilRepository.delete(perfilRetornado.get());

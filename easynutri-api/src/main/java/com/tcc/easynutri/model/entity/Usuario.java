@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tcc.easynutri.model.dto.UsuarioDTO;
 
 @SuppressWarnings("serial")
@@ -35,6 +36,7 @@ public class Usuario extends EntityBase {
 		this.senha = senha;
 	}
 	
+	@JsonIgnore
 	public UsuarioDTO getDto() {
 		var usuarioDto = new UsuarioDTO();
 		usuarioDto.setId(this.getId());

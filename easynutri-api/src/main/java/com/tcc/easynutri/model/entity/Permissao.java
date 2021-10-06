@@ -17,7 +17,6 @@ public class Permissao extends EntityBase {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="perfil_id")
-	
 	@JsonBackReference
 	private Perfil perfil;
 
