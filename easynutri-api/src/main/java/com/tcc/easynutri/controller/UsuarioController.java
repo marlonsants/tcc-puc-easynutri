@@ -9,6 +9,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,9 @@ public class UsuarioController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<UsuarioDTO> adicionar(@RequestBody  @Valid UsuarioDTO usuarioDto) {
+		var bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		var senhaCriptografada = bCryptPasswordEncoder.encode(usuarioDto.getSenha());
+		usuarioDto.setSenha(senhaCriptografada);
 		var usuarioDtoRetorno = usuarioRepository.save(usuarioDto.getEntity()).getDto();
 		return new ResponseEntity<UsuarioDTO>(usuarioDtoRetorno,HttpStatus.CREATED);
 	}
@@ -70,5 +74,5 @@ public class UsuarioController {
 		var usuario = usuarioRepository.findById(id);
 		return usuario.get().getDto();
 	}
-	
+			
 }

@@ -8,4 +8,6 @@ import com.tcc.easynutri.model.entity.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
+	Usuario findFirstByEmail(String email);
+	
 }
