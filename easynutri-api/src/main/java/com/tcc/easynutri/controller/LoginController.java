@@ -38,7 +38,7 @@ public class LoginController {
 			throw new MissingServletRequestParameterException(String.format("Senha incorreta, verifique e tente novamente"), "teste" );
 		}
 		
-		return new ResponseEntity<Boolean>(true,HttpStatus.CREATED);
+		return new ResponseEntity<Boolean>(true,HttpStatus.OK);
 	}
 	
 	
