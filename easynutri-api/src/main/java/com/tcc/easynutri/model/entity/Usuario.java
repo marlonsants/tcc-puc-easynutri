@@ -20,8 +20,16 @@ public class Usuario extends EntityBase {
 		
 	@Column(unique = true, nullable = false)
 	private String email;
+	
 	@Column(nullable = false)
 	private String senha;
+	
+	@Column(nullable = false)
+	private String nome;
+	
+	private String telefone;
+	
+	private String celular;
 		
 	public String getEmail() {
 		return email;
@@ -40,8 +48,29 @@ public class Usuario extends EntityBase {
 	public UsuarioDTO getDto() {
 		var usuarioDto = new UsuarioDTO();
 		usuarioDto.setId(this.getId());
-		usuarioDto.setEmail(this.email);
+		usuarioDto.setEmail(email);
 		usuarioDto.setSenha(senha);
+		usuarioDto.setNome(nome);
+		usuarioDto.setTelefone(telefone);
+		usuarioDto.setCelular(celular);
 		return usuarioDto;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	public String getCelular() {
+		return celular;
+	}
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 }

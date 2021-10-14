@@ -1,5 +1,6 @@
 package com.tcc.easynutri.model.dto;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -20,6 +21,12 @@ public class UsuarioDTO extends DtoBase {
 	@NotBlank(message =  "{senha.not.blank}")
 	@Length(min = 6, message = "{senha.min}")
 	private String senha;
+		
+	private String nome;
+	
+	private String telefone;
+	
+	private String celular;
 	
 	public String getSenha() {
 		return senha;
@@ -39,8 +46,29 @@ public class UsuarioDTO extends DtoBase {
 	@JsonIgnore
 	public Usuario getEntity() {
 		var usuario = new Usuario();
-		usuario.setEmail(this.email);
-		usuario.setSenha(this.senha);
+		usuario.setEmail(email);
+		usuario.setSenha(senha);
+		usuario.setNome(nome);
+		usuario.setTelefone(telefone);
+		usuario.setCelular(celular);
 		return usuario;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	public String getCelular() {
+		return celular;
+	}
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 }
