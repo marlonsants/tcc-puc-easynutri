@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center align-items-center" style="height: 100vh">
+    <div class="col-4">
+      <div class="row">
+        <h2>EasyNutri</h2>
+        <h6>Informe os dados abaixo para se cadastrar</h6>
+      </div>
+      <app-dados-usuario #dadosUsuario>
+      </app-dados-usuario>
+      <div class="row mt-2">
+        <button (click)="cadastrar(dadosUsuario?.usuario)" class="btn btn-success btn-block" >Concluir</button>
+      </div>
+      <div class="row mt-2">
+        <a  class="btn btn-primary btn-block" routerLink="/login">Voltar</a>
+      </div>
+    </div>
+  </div>
+</div>
+

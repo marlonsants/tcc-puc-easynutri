@@ -1,0 +1,34 @@
+<form>
+  <div class="row mt-2" >
+    <label for="label-control">Nome</label>
+    <input [(ngModel)]="usuario.nome"
+           type="text"
+           name="email"
+           id="email"
+           class="form-control"/>
+  </div>
+  <div class="row mt-2" >
+    <label for="label-control">E-mail</label>
+    <input [(ngModel)]="usuario.email"
+           type="text"
+           name="email"
+           id="email"
+           class="form-control"/>
+  </div>
+  <div class="row mt-2">
+    <label for="label-control">Senha</label>
+    <input [(ngModel)]="usuario.senha"
+           type="password"
+           name="senha"
+           id="senha"
+           class="form-control"/>
+  </div>
+  <div class="row mt-2">
+    <label for="label-control">Confirmação de senha</label>
+    <input [(ngModel)]="confirmacaoSenha"
+           type="password"
+           name="confirmacaoSenha"
+           id="confirmacaoSenha"
+           class="form-control"/>
+  </div>
+</form>

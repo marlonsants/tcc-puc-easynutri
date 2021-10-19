@@ -27,7 +27,7 @@ import com.tcc.easynutri.model.repository.UsuarioRepository;
 import com.tcc.easynutri.util.validacao.ValidacaoRecursoUtil;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("usuario")
 public class UsuarioController {
 
 	@Autowired	

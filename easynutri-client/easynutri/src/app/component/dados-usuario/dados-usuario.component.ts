@@ -1,3 +1,4 @@
+import { Usuario } from './../../model/usuario.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dados-usuario.component.css']
 })
 export class DadosUsuarioComponent implements OnInit {
+
+  usuario: Usuario = {};
+  confirmacaoSenha: string = "";
 
   constructor() { }
 
