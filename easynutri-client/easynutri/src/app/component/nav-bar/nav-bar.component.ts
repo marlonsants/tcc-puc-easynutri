@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+
+const ROTAS_SEM_NAV_BAR = ['/login', '/cadastro'];
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,7 +19,7 @@ export class NavBarComponent implements OnInit {
     this.router.events.subscribe(
       (event: any) => {
         if (event instanceof NavigationEnd) {
-          this.hidden = this.router.url === '/login';
+          this.hidden = ROTAS_SEM_NAV_BAR.indexOf(this.router.url) != -1;
         }
       }
     );
