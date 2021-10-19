@@ -2,17 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider } from 'angularx-social-login';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import {ToastModule} from 'primeng/toast';
+import { RippleModule } from 'primeng/ripple';
+
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { CadastroUsuarioModule } from './pages/cadastro-usuario/cadastro-usuario.module';
+import { DadosUsuarioModule } from './component/dados-usuario/dados-usuario.module';
 
 
 @NgModule({
@@ -29,8 +33,11 @@ import { HttpClientModule } from '@angular/common/http';
     ModalModule.forRoot(),
     ReactiveFormsModule,
     SocialLoginModule,
-    HttpClientModule
-
+    HttpClientModule,
+    DadosUsuarioModule,
+    CadastroUsuarioModule,
+    ToastModule,
+    RippleModule
   ],
   providers: [
     {

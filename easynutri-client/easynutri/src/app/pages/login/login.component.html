@@ -23,15 +23,21 @@
         </div>
       </form>
       <div class="row mt-2">
-        <button type="button" (click)="loginWithGoogle()" class="btn btn-primary btn-block">
-          <i class="fa-brands fa-google"></i>Entrar com Google
+        <button (click)="login()" class="btn btn-success btn-block" >
+          Entrar <i class="ml-2 pi pi-sign-in"></i>
         </button>
       </div>
       <div class="row mt-2">
-        <button (click)="login()" class="btn btn-success btn-block" >Entrar</button>
+        <a class="btn btn-success btn-block"
+        routerLink="/cadastro"
+        name="cadastro">
+        Cadastrar <i class="ml-2 pi pi-user-plus"></i>
+      </a>
       </div>
       <div class="row mt-2">
-        <button class="btn btn-success btn-block">Cadastrar</button>
+        <button type="button" (click)="loginWithGoogle()" class="btn btn-primary btn-block">
+          Entrar com Google<i class="ml-2 pi pi-google"></i>
+        </button>
       </div>
       <div class="row mt-2">
         <button class="btn btn-default btn-block"
