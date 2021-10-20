@@ -1,3 +1,4 @@
+import { AuthGuardService } from './guard/auth-guard.service';
 import { HomeModule } from './pages/home/shared/home.module';
 import { HomeComponent } from './pages/home/home.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -10,17 +11,26 @@ import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usua
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'cadastro', component: CadastroUsuarioComponent }
+  {
+    path: '', component: HomeComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'login', component: LoginComponent,
+  },
+  {
+    path: 'home', component: HomeComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'cadastro', component: CadastroUsuarioComponent,
+  }
 
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    LoginModule,
-    HomeModule
   ],
   exports: [RouterModule],
   providers: [

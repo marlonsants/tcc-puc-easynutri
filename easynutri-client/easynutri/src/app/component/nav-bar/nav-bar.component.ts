@@ -1,8 +1,6 @@
+import { AuthService } from './../../pages/login/shared/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-
-const ROTAS_SEM_NAV_BAR = ['/login', '/cadastro'];
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -10,7 +8,9 @@ const ROTAS_SEM_NAV_BAR = ['/login', '/cadastro'];
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService) { }
 
   hidden: boolean = false;
 
@@ -18,9 +18,7 @@ export class NavBarComponent implements OnInit {
 
     this.router.events.subscribe(
       (event: any) => {
-        if (event instanceof NavigationEnd) {
-          this.hidden = ROTAS_SEM_NAV_BAR.indexOf(this.router.url) != -1;
-        }
+       this.hidden = !this.authService.usuarioEstaAutenticado();
       }
     );
 

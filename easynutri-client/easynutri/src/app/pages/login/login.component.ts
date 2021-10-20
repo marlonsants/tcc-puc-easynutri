@@ -1,8 +1,10 @@
-import { LoginService } from './shared/login.service';
+import { AuthService } from './shared/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Usuario } from './../../model/usuario.model';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private socialAuthService: SocialAuthService,
-    private loginService: LoginService
+    private authService: AuthService,
+    private router: Router,
+    private messageService: MessageService
     ) { }
 
   ngOnInit(): void {
@@ -30,8 +34,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginService.login(this.usuario).subscribe((logado: boolean) => {
-      console.log(logado);
+    this.authService.auth(this.usuario).subscribe((autenticado: boolean) => {
+      this.authService.setUsuarioAutenticado(autenticado);
+      if (autenticado) {
+        this.router.navigate(['home']);
+      } else {
+        this.messageService.add({severity: 'warn', detail: ''})
+      }
+
+
     })
   }
 

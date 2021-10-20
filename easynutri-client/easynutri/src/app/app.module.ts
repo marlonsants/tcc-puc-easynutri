@@ -1,3 +1,5 @@
+import { HomeModule } from './pages/home/shared/home.module';
+import { LoginModule } from './pages/login/shared/login.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -37,7 +39,9 @@ import { DadosUsuarioModule } from './component/dados-usuario/dados-usuario.modu
     DadosUsuarioModule,
     CadastroUsuarioModule,
     ToastModule,
-    RippleModule
+    RippleModule,
+    LoginModule,
+    HomeModule
   ],
   providers: [
     {
