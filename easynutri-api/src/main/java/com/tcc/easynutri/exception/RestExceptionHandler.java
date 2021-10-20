@@ -1,12 +1,10 @@
 package com.tcc.easynutri.exception;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +32,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		HashMap<String, String> errorObject = new HashMap<>();
-		errorObject.put("Erro", ex.getParameterName());
+		errorObject.put("mensagemErro", ex.getParameterName());
         return new ResponseEntity<>(errorObject,status);
 	}
 	
@@ -45,7 +43,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 		
 	private ErrorResponse getErrorResponse(MethodArgumentNotValidException ex, HttpStatus status, List<ErrorObject> errors) {
-        return new ErrorResponse("Requisição possui campos inválidos", status.value(),
+        return new ErrorResponse("A requisição possui campos inválidos", status.value(),
                 status.getReasonPhrase(), ex.getBindingResult().getObjectName(), errors);
     }
 

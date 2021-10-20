@@ -22,7 +22,7 @@ import com.tcc.easynutri.model.repository.PerfilRepository;
 import com.tcc.easynutri.util.validacao.ValidacaoRecursoUtil;
 
 @RestController
-@RequestMapping("/perfil")
+@RequestMapping("perfil")
 public class PerfilController {
 
 	@Autowired	

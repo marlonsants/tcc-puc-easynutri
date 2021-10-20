@@ -17,25 +17,25 @@ import com.tcc.easynutri.model.dto.UsuarioDTO;
 import com.tcc.easynutri.model.repository.UsuarioRepository;
 
 @RestController
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("auth")
+public class AuthController {
 
 	@Autowired	
 	private UsuarioRepository usuarioRepository;
 		
 	@PostMapping
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Boolean> login(@RequestBody  @Valid UsuarioDTO usuarioDto) throws MissingServletRequestParameterException {
+	public ResponseEntity<Boolean> autenticar(@RequestBody  @Valid UsuarioDTO usuarioDto) throws MissingServletRequestParameterException {
 		var encoder = new BCryptPasswordEncoder();
 		var usuarioRetornado = usuarioRepository.findFirstByEmail(usuarioDto.getEmail());
 		
 		if(usuarioRetornado == null) {
-			throw new MissingServletRequestParameterException(String.format("E-mail incorreto, verifique e tente novamente"), "teste" );
+			throw new MissingServletRequestParameterException("E-mail incorreto, verifique e tente novamente", "" );
 		}
 		
 		boolean senhaCorreta = encoder.matches(usuarioDto.getSenha(), usuarioRetornado.getSenha());
 		if (!senhaCorreta) {
-			throw new MissingServletRequestParameterException(String.format("Senha incorreta, verifique e tente novamente"), "teste" );
+			throw new MissingServletRequestParameterException("Senha incorreta, verifique e tente novamente", "");
 		}
 		
 		return new ResponseEntity<Boolean>(true,HttpStatus.OK);

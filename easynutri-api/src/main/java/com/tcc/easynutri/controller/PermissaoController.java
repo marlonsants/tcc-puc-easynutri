@@ -22,7 +22,7 @@ import com.tcc.easynutri.model.repository.PermissaoRepository;
 import com.tcc.easynutri.util.validacao.ValidacaoRecursoUtil;
 
 @RestController
-@RequestMapping("/permissao")
+@RequestMapping("permissao")
 public class PermissaoController {
 
 	@Autowired	

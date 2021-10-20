@@ -4,38 +4,44 @@ import java.util.List;
 
 public class ErrorResponse {
 	
-	private final String message;
-    private final int code;
+	private final String mensagemErro;
+    private final int codigo;
     private final String status;
-    private final String objectName;
-    private final List<ErrorObject> errors;
+    private final String nomeObjeto;
+    private final List<ErrorObject> erros;
     
 	public ErrorResponse(String message, int code, String status, String objectName, List<ErrorObject> errors) {
 		super();
-		this.message = message;
-		this.code = code;
+		this.mensagemErro = message;
+		this.codigo = code;
 		this.status = status;
-		this.objectName = objectName;
-		this.errors = errors;
+		this.nomeObjeto = objectName;
+		this.erros = errors;
 	}
 
 	public String getMessage() {
-		return message;
+		return mensagemErro;
 	}
 
-	public int getCode() {
-		return code;
+	public String getMensagemErro() {
+		return mensagemErro;
+	}
+
+	public int getCodigo() {
+		return codigo;
 	}
 
 	public String getStatus() {
 		return status;
 	}
 
-	public String getObjectName() {
-		return objectName;
+	public String getNomeObjeto() {
+		return nomeObjeto;
 	}
 
-	public List<ErrorObject> getErrors() {
-		return errors;
+	public List<ErrorObject> getErros() {
+		return erros;
 	}
+
+	
 }

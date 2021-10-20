@@ -1,25 +1,29 @@
 package com.tcc.easynutri.error;
 
 public class ErrorObject {
-	private final  String message;
-    private final  String field;
-    private final  Object parameter;
+	private final  String mensagem;
+    private final  String campo;
+    private final  Object parametro;
     
 	public ErrorObject(String message, String field, Object parameter) {
 		super();
-		this.message = message;
-		this.field = field;
-		this.parameter = parameter;
+		this.mensagem = message;
+		this.campo = field;
+		this.parametro = parameter;
+	}
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public String getCampo() {
+		return campo;
+	}
+
+	public Object getParametro() {
+		return parametro;
 	}
 	
-	public String getMessage() {
-		return message;
-	}
-	public String getField() {
-		return field;
-	}
-	public Object getParameter() {
-		return parameter;
-	}
+	
     
 }

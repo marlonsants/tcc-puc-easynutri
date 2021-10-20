@@ -3,8 +3,6 @@ package com.tcc.easynutri.util.validacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 
-import com.tcc.easynutri.exception.RecursoNaoEncontradoException;
-
 public class ValidacaoRecursoUtil {
 	
 	/**
