@@ -1,4 +1,4 @@
-import { AuthService } from './../pages/login/shared/auth.service';
+import { AuthService } from '../auth.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,7 +17,7 @@ export class AuthGuardService implements CanActivate {
     let autenticado: boolean = this.authService.usuarioEstaAutenticado();
 
     if (!autenticado) {
-      this.router.navigate['login'];
+      this.router.navigate(['login']);
     }
 
     return autenticado;
