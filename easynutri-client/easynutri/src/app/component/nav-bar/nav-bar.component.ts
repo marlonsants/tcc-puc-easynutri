@@ -1,4 +1,4 @@
-import { AuthService } from './../../pages/login/shared/auth.service';
+import { AuthService } from '../../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
@@ -21,7 +21,11 @@ export class NavBarComponent implements OnInit {
        this.hidden = !this.authService.usuarioEstaAutenticado();
       }
     );
+  }
 
+  logout(event: Event): void{
+    event.preventDefault();
+    this.authService.logout();
   }
 
 }

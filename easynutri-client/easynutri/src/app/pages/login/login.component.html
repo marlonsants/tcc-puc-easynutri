@@ -3,6 +3,7 @@
     <div class="col-4">
       <div class="row">
         <h2>EasyNutri</h2>
+        <img class="logo-login" src="assets/imagens/maca_verde.jpg" alt="Logo da página de login - maçã verde">
       </div>
       <form>
         <div class="row mt-2" >
@@ -11,7 +12,8 @@
                  type="text"
                  name="email"
                  id="email"
-                 class="form-control"/>
+                 class="form-control"
+                 (keyUp.enter)="login()"/>
         </div>
         <div class="row mt-2">
           <label for="label-control">Senha</label>
@@ -19,7 +21,8 @@
                  type="password"
                  name="senha"
                  id="senha"
-                 class="form-control"/>
+                 class="form-control"
+                 (keyUp.enter)="login()"/>
         </div>
       </form>
       <div class="row mt-2">
@@ -41,7 +44,7 @@
       </div>
       <div class="row mt-2">
         <button class="btn btn-default btn-block"
-                (click)="logOut()">Sair da conta do google
+                (click)="logOutWithGoogle()">Sair da conta do google
         </button>
       </div>
     </div>
