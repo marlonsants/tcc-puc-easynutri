@@ -1,10 +1,12 @@
+import { MessageService } from 'primeng/api';
+import { HttpErrorInterceptor } from './http-error-interceptor';
 import { HomeModule } from './pages/home/shared/home.module';
 import { LoginModule } from './pages/login/shared/login.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -61,7 +63,9 @@ import { DadosUsuarioModule } from './component/dados-usuario/dados-usuario.modu
           }
         ]
       } as SocialAuthServiceConfig,
-    }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+     MessageService
 ],
   bootstrap: [AppComponent]
 })
